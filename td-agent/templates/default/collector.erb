@@ -4,10 +4,13 @@
   port 24224
 </source>
 
+<match fluent.info>
+  type stdout
+</match>
 <match **>
   type forest
   subtype copy
-  <tamplate>
+  <template>
     <store>
       type elasticsearch
       host localhost
@@ -16,11 +19,6 @@
       logstash_prefix ${tag}
       logstash_dateformat %Y%m
     </store>
-<case adrequest>
-    <store>
-      type stdout
-    </store>
-</case>
-  </tamplate>
+  </template>
 </match>
 
