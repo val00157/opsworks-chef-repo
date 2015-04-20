@@ -4,7 +4,7 @@
   port 24224
 </source>
 
-<match *.**>
+<match adRequest>
   type copy
 
   <store>
@@ -15,7 +15,7 @@
     host localhost
     port 9200
     logstash_format true
-    logstash_prefix tomcat_access
+    logstash_prefix adrequest
     logstash_dateformat %Y%m
   </store>
 </match>
