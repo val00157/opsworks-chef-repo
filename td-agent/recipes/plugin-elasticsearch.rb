@@ -1,6 +1,3 @@
-include_recipe "base::devel"
-include_recipe "td-agent::default"
-
 # elasticsearchプラグインのインストール
 gem_package "fluent-plugin-elasticsearch" do
   gem_binary "/opt/td-agent/embedded/bin/fluent-gem"

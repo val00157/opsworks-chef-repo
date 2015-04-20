@@ -1,7 +1,6 @@
 stack = node[:opsworks][:stack][:name] 
 params = data_bag_item("elasticsearch", stack)["elasticsearch"]
 
-include_recipe "elasticsearch::default"
 bash "elasticsearch-cloud-aws" do
   cwd "/usr/share/elasticsearch"
   code <<-EOC

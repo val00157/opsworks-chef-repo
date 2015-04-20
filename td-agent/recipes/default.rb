@@ -7,8 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "yum_repo::td-agent"
+# td-agentインストール
 package "td-agent" do
+  action :install
+end
+
+# elasticsearchプラグインのインストール
+gem_package "fluent-plugin-forest" do
+  gem_binary "/opt/td-agent/embedded/bin/fluent-gem"
   action :install
 end
 

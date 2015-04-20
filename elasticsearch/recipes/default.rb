@@ -9,7 +9,6 @@
 stack = node[:opsworks][:stack][:name] 
 params = data_bag_item("elasticsearch", stack)["elasticsearch"]
 
-include_recipe "yum_repo::elasticsearch"
 package "elasticsearch" do
   action :install
 end
