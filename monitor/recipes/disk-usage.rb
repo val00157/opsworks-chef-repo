@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 stack = node[:opsworks][:stack][:name] 
-params = data_bag_item("elasticsearch", stack)["elasticsearch"]
+params = data_bag_item("monitor", stack)["CloudWatch"]
 
 # ディスク容量モニタリングシェルを展開する
 template "/root/monitor-disk-usage.sh" do
@@ -19,8 +19,11 @@ template "/root/monitor-disk-usage.sh" do
 end
 
 # ディスク容量モニタリングシェルをcron登録する
-cron "Monitor Disk Usage" do
-  user "root"
-  minute "*/5"
-  command "/root/monitor-disk-usage.sh " + (params["MONITORING_MOUNT_DIRECTORY"].nil? ? "" : params["MONITORING_MOUNT_DIRECTORY"])
+targets = params["disk-usage"]["MONITORING_MOUNT_DIRECTORY"].split(/\s+|\s*,\s*/)
+targets.each do |path|
+  cron "Monitor Disk Usage(" + path + ")"  do
+    user "root"
+    minute "*/5"
+    command "/root/monitor-disk-usage.sh " + path
+  end
 end
