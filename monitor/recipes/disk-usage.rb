@@ -1,11 +1,3 @@
-#
-# Cookbook Name:: elasticsearch
-# Recipe:: default
-#
-# Copyright 2015, YOUR_COMPANY_NAME
-#
-# All rights reserved - Do Not Redistribute
-#
 stack = node[:opsworks][:stack][:name] 
 params = data_bag_item("monitor", stack)["CloudWatch"]
 
